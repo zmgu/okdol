@@ -2,34 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Twelfth navbar example" th:fragment="menu">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Twelfth navbar example"
+        th:fragment="menu">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample10"
                 aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+            <div class="collapse navbar-collapse justify-content-around" id="navbarsExample10">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                    <li class="nav-item me-5">
                         <a class="nav-link active" aria-current="page" href="#">전체상품</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    <div class="dropdown me-5">
+                        <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">식품</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#">김</a></li>
+                            <li><a class="dropdown-item" href="#">부각</a></li>
+                            <li><a class="dropdown-item" href="#">기름</a></li>
                         </ul>
+                    </div>
+                    <li class="nav-item me-5">
+                        <a class="nav-link active" href="#">공지사항</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">공지사항</a>
+                    <li class="nav-item me-5">
+                        <a class="nav-link active" href="#">리뷰</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Q&A</a>
+                    <li class="nav-item me-5">
+                        <a class="nav-link active" aria-disabled="true">Q&A</a>
                     </li>
-
+                    <li class="nav-item me-5">
+                        <a class="nav-link active" href="#">오시는 길</a>
+                    </li>
                 </ul>
             </div>
         </div>
