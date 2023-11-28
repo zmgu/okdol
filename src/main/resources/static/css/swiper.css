@@ -1,9 +1,8 @@
-.swiper-slide {
-    width: 30%;
-    height: 30%;
-    background-color: #eee;
+.swiper-slide img {
+    height: 400px !important; /* Set the height to 500px */
+    width: auto; /* Auto adjust width to maintain aspect ratio */
+    max-width: 100%; /* Ensure the image doesn't exceed its original size */
 }
-
 .swiper-pagination-bullet {
     width: 40px;
     height: 3px;

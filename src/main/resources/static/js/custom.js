@@ -3,7 +3,11 @@ const swiper = new Swiper('.swiper', {
     pagination: {
       el: '.swiper-pagination',
     },
-  
+ 
+    loop: true,
+
+    autoHeight: false,
+
     // Navigation arrows
     navigation: {
       nextEl: '.swiper-button-next',
