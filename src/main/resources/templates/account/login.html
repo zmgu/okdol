@@ -29,7 +29,7 @@
           <h1 class="h3 mb-3 fw-normal">로그인</h1>
           <div class="form-floating mb-2">
               <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-              <label for="floatingInput">이메일</label>
+              <label for="floatingInput">아이디</label>
           </div>
           <div class="form-floating mb-3">
               <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
@@ -42,16 +42,16 @@
           <div class="vr me-2"></div>
           <a class="text-decoration-none text-dark me-2" href="#">비밀번호 찾기</a>
           <div class="vr me-2"></div>
-          <a class="text-decoration-none text-dark me-2" href="#">회원가입</a>
+          <a class="text-decoration-none text-dark me-2" th:href="@{/account/register}">회원가입</a>
           </div>
 
           <div class="hr-sect mb-4">간편 로그인</div>
 
-          <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+          <button class="w-100 py-2 mb-2 btn btn-outline-success rounded-3" type="submit">
             <svg class="bi me-1" width="16" height="16"><use xlink:href="#twitter"/></svg>
             네이버 로그인
           </button>
-          <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+          <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="submit">
             <svg class="bi me-1" width="16" height="16"><use xlink:href="#facebook"/></svg>
             구글 로그인
           </button>

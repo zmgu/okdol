@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box; /*전체에 박스사이징*/
+    outline: none; /*focus 했을때 테두리 나오게 */
+}
+
+input {
+    border-radius: 0.375rem; /* 3 * 0.125rem = 0.375rem for rounded-3 */
+}
+
+label {
+    height: 50.99px;
+    background-color: #fff;
+    color: #fff;
+}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:14px;
+    background-color: #f5f6f7;
+    color : #222;
+    margin: 0;
+}
+
+/*member sign in*/
+.member{
+    width: 500px;
+    /* border: 1px solid #000; */
+    margin: auto; /*중앙 정렬*/
+    padding: 0 20px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.member .logo{
+    /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
+    display: block;
+    margin :50px auto;
+}
+
+.member input,.member select{
+    border: 1px solid #dadada;
+    padding: 15px;
+    width: 100%;
+}
+
+.member input[type=button],
+.member input[type=submit]{
+background-color: #2db400;
+color:#fff
+}
+
+.member input:focus, .member select:focus{
+    border: 1px solid #2db400;
+}
+
+
+.placehold-text{
+    display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어줘야한다*/
+    position:relative;
+    /* border: 1px solid #000; */
+}
+
+.userpw{
+    /* background:url(./images/images2/icon-01.png) no-repeat center right 15px; */
+    background-size: 20px;
+    background-color: #fff;
+}
+
+.userpw-confirm{
+    /* background:url(./images/images2/icon-02.png) no-repeat center right 15px; */
+    background-size: 20px;
+    background-color: #fff;
+}
+
+
+/* google font */
+* {
+    font-family: 'Jua', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
