@@ -59,20 +59,48 @@ color:#fff
     position:relative;
     /* border: 1px solid #000; */
 }
+.userid{
+    background:url(/images/person.png) no-repeat center right 15px;
+    background-size: 30px;
+    background-color: #fff;
+
+}
 
 .userpw{
-    /* background:url(./images/images2/icon-01.png) no-repeat center right 15px; */
-    background-size: 20px;
+    background:url(/images/pw.svg) no-repeat center right 15px;
+    background-size: 30px;
     background-color: #fff;
 }
 
 .userpw-confirm{
-    /* background:url(./images/images2/icon-02.png) no-repeat center right 15px; */
-    background-size: 20px;
+    background:url(/images/pwc.svg) no-repeat center right 15px;
+    background-size: 30px;
     background-color: #fff;
 }
 
+.username{
+    background:url(/images/person.png) no-repeat center right 15px;
+    background-size: 30px;
+    background-color: #fff;
+}
 
+.userbirth{
+    background:url(/images/birth.svg) no-repeat center right 15px;
+    background-size: 30px;
+    background-color: #fff;
+}
+
+.usermail{
+    background:url(/images/mail.svg) no-repeat center right 15px;
+    background-size: 30px;
+    background-color: #fff;
+}
+
+.userphone{
+    background:url(/images/phone.svg) no-repeat center right 15px;
+    background-size: 30px;
+    background-color: #fff;
+}
 /* google font */
 * {
     font-family: 'Jua', sans-serif;
