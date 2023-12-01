@@ -10,15 +10,13 @@
   <div class="container" th:fragment="header">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
-        <span class="fs-4">옥돌구이김(로고자리)</span>
+        <img src="/images/icon/mini-logo.png">
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item fw-bold"><a th:href="@{/account/login}" class="nav-link text-light">로그인</a></li>
-        <li class="nav-item fw-bold"><a th:href="@{/account/register}" class="nav-link text-light">회원가입</a></li>
+        <li class="nav-item me-1"><a th:href="@{/account/login}" class="nav-link text-secondary">로그인</a></li>
+        <span class="vr me-1"></span>
+        <li class="nav-item"><a th:href="@{/account/register}" class="nav-link text-secondary">회원가입</a></li>
       </ul>
     </header>
   </div>
