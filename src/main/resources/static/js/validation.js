@@ -19,7 +19,7 @@ document.getElementById('userid').addEventListener('blur', function () {
         idAlert = document.getElementById('idAlert'),
         userid = document.getElementById('userid');
 
-    if  (idValue.length == 0) {
+    if  (!idValue) {
         idAlert.style.display = 'block';
         idAlert.classList.add('alert-danger');
         idAlert.textContent = '이메일을 입력해 주세요.';
@@ -47,7 +47,7 @@ document.getElementById('pw').addEventListener('input', function () {
         pwConfirm = document.getElementById('pwConfirm'),
         pwConfirmAlert = document.getElementById('pwConfirmAlert');
 
-    if (pwValue == 0) {
+    if (!pwValue) {
         pwAlert.style.display = 'block';
         pwAlert.classList.add('alert-danger');
         pwAlert.textContent = '비밀번호를 입력해 주세요.';
@@ -89,7 +89,7 @@ function validatePwConfirm() {
         pwConfirm.classList.remove('is-invalid');
         pwConfirm.classList.add('is-valid');
 
-    } else if(pwConfirm.value < 1) { 
+    } else if(!pwConfirm.value) { 
         pwConfirmAlert.style.display = 'none';
         pwConfirm.classList.add('is-invalid');
 
@@ -108,7 +108,7 @@ document.getElementById('username').addEventListener('blur', function () {
         nameAlert = document.getElementById('nameAlert'),
         username = document.getElementById('username');
 
-    if (nameValue.length == 0) {
+    if (!nameValue) {
         nameAlert.style.display = 'block';
         nameAlert.classList.add('alert-danger');
         nameAlert.textContent = '이름을 입력해 주세요.';
@@ -136,7 +136,7 @@ document.getElementById('birth').addEventListener('blur', function () {
 
     const numericValue = birthValue.replace(/\D/g, '');
 
-    if (birth.length == 0) {
+    if (!birthValue) {
         birthAlert.style.display = 'block';
         birthAlert.classList.add('alert-danger');
         birthAlert.textContent = '생년월일을 입력해 주세요.';
@@ -157,7 +157,7 @@ document.getElementById('birth').addEventListener('blur', function () {
               dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
         
         if (dateRegex.test(d+'-'+m+'-'+y) && y >= currentYear - 100 && y <= currentYear - 7) {
-            
+
             y = String(y);
             m = String(m);
             if (m.length < 2) { m = '0' + m }
