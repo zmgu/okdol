@@ -31,28 +31,30 @@
             <div class="form-floating mb-2">
                 <input type="email" class="form-control" id="userid" name="userid" placeholder="email" required>
                 <label for="userid">아이디 [이메일]</label>
-                <div class="alert alert-danger" id="idCheck"></div>
-            </div>
-            <div class="form-floating mb-1">
-                <input type="password" class="pw form-control" style="margin-bottom: -10px;" id="pw" name="pw" placeholder="Password" required>
-                <label for="pw">비밀번호</label>
-                <div class="alert alert-danger mt-3" id="pwCheck"></div>
+                <div class="alert alert-danger mt-1" id="idAlert"></div>
             </div>
             <div class="form-floating mb-2">
-              <input type="password" class="pwConfirm form-control" id="pwConfirm" name="pwConfirm" placeholder="Password" required>
+                <input type="password" class="pw form-control" style="margin-bottom: -10px;" id="pw" name="pw" maxlength="16" placeholder="Password" required>
+                <label for="pw">비밀번호</label>
+                <div class="alert alert-danger mt-3" id="pwAlert"></div>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="password" class="pwConfirm form-control" id="pwConfirm" name="pwConfirm" maxlength="16" placeholder="Password" required>
               <label for="pwConfirm">비밀번호 재확인</label>
-              <div class="alert alert-danger mt-3" id="pwConfirmCheck"></div>
+              <div class="alert alert-danger mt-1" id="pwConfirmAlert"></div>
             </div>
             <div class="form-floating mb-2">
                 <input type="text" class="form-control" id="username" name="username" placeholder="이름" required>
                 <label for="username">이름</label>
+                <div class="alert alert-danger mt-1" id="nameAlert"></div>
             </div>
             <div class="form-floating mb-2">
-              <input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일" required>
+              <input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일" maxlength="10" required>
               <label for="birth">생년월일 8자리</label>
+              <div class="alert alert-danger mt-1" id="birthAlert"></div>
             </div>
             <div class="form-floating mb-4">
-              <input type="text" class="form-control" id="tel" name="tel" placeholder="연락처" required>
+              <input type="text" class="form-control" id="tel" name="tel" maxlength="13" placeholder="연락처" required>
               <label for="tel">휴대폰 번호 [- 없이 입력]</label>
             </div>
             </div>
