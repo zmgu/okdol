@@ -2,7 +2,7 @@
 const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,32}$/;
 const namePattern = /^[a-zA-Z가-힣]*$/;
-const birthPattern = /^[0-9-]*$/;
+const birthAndTelPattern = /^[0-9-]*$/;
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('idAlert').style.display = 'none';
@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('pwConfirmAlert').style.display = 'none';
     document.getElementById('nameAlert').style.display = 'none';
     document.getElementById('birthAlert').style.display = 'none';
+    document.getElementById('telAlert').style.display = 'none';
 });
 
 // 아이디
@@ -47,13 +48,7 @@ document.getElementById('pw').addEventListener('input', function () {
         pwConfirm = document.getElementById('pwConfirm'),
         pwConfirmAlert = document.getElementById('pwConfirmAlert');
 
-    if (!pwValue) {
-        pwAlert.style.display = 'block';
-        pwAlert.classList.add('alert-danger');
-        pwAlert.textContent = '비밀번호를 입력해 주세요.';
-        pw.classList.add('is-invalid');
-
-    } else if (!pwPattern.test(pwValue)) {
+    if (!pwPattern.test(pwValue)) {
         pwAlert.style.display = 'block';
         pwAlert.classList.add('alert-danger');
         pwAlert.textContent = '비밀번호는 8~16자의 숫자, 영문, 특수문자를 조합하여 사용해 주세요.';
@@ -75,6 +70,22 @@ document.getElementById('pw').addEventListener('input', function () {
     // pwConfirm의 현재 값도 검사
     validatePwConfirm();
 });
+
+document.getElementById('pw').addEventListener('blur', function () {
+
+    var pwValue = this.value,
+        pwAlert = document.getElementById('pwAlert'),
+        pw = document.getElementById('pw');
+        
+    if (!pwValue) {
+        pwAlert.style.display = 'block';
+        pwAlert.classList.add('alert-danger');
+        pwAlert.textContent = '비밀번호를 입력해 주세요.';
+        pw.classList.add('is-invalid');
+
+    }
+});
+
 
 document.getElementById('pwConfirm').addEventListener('input', validatePwConfirm);
 
@@ -134,7 +145,7 @@ document.getElementById('birth').addEventListener('blur', function () {
         birth = document.getElementById('birth'),
         birthAlert = document.getElementById('birthAlert');
 
-    const numericValue = birthValue.replace(/\D/g, '');
+    const numberValue = birthValue.replace(/\D/g, '');
 
     if (!birthValue) {
         birthAlert.style.display = 'block';
@@ -142,29 +153,23 @@ document.getElementById('birth').addEventListener('blur', function () {
         birthAlert.textContent = '생년월일을 입력해 주세요.';
         birth.classList.add('is-invalid');
 
-    } else if (!birthPattern.test(birthValue) || numericValue.length != 8) {
+    } else if (!birthAndTelPattern.test(birthValue) || numberValue.length != 8) {
         birthAlert.style.display = 'block';
         birthAlert.classList.add('alert-danger');
         birthAlert.textContent = '생년월일 8자리 숫자로 입력해 주세요.';
         birth.classList.add('is-invalid');
 
     } else {
-        var y = parseInt(numericValue.slice(0, 4), 10),
-            m = parseInt(numericValue.slice(4, 6), 10),
-            d = parseInt(numericValue.slice(6), 10);
+        var y = numberValue.slice(0, 4),
+            m = numberValue.slice(4, 6),
+            d = numberValue.slice(6);
 
         const currentYear = new Date().getFullYear(),
               dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
         
-        if (dateRegex.test(d+'-'+m+'-'+y) && y >= currentYear - 100 && y <= currentYear - 7) {
+        if (dateRegex.test(d + '-' + m + '-' + y) && y >= currentYear - 100 && y <= currentYear - 7) {
 
-            y = String(y);
-            m = String(m);
-            if (m.length < 2) { m = '0' + m }
-            d = String(d);
-            if (d.length < 2) { d = '0' + d }
-
-            this.value = y+'-'+m+'-'+d;
+            this.value = y + '-' + m + '-' + d;
             birthAlert.style.display = 'none';
             birth.classList.remove('is-invalid');
             birth.classList.add('is-valid');
@@ -178,3 +183,46 @@ document.getElementById('birth').addEventListener('blur', function () {
     }
 });
 
+// 휴대폰 번호
+document.getElementById('tel').addEventListener('blur', function () {
+
+    var telValue = this.value,
+        tel = document.getElementById('tel'),
+        telAlert = document.getElementById('telAlert');
+
+    const numberValue = telValue.replace(/\D/g, '');
+
+    if (!telValue) {
+        telAlert.style.display = 'block';
+        telAlert.classList.add('alert-danger');
+        telAlert.textContent = '휴대폰 번호를 입력해 주세요.';
+        tel.classList.add('is-invalid');
+
+    } else if (!birthAndTelPattern.test(telValue) || numberValue.length != 11) {
+        telAlert.style.display = 'block';
+        telAlert.classList.add('alert-danger');
+        telAlert.textContent = '휴대폰 번호 11자리 숫자로 입력해 주세요.';
+        tel.classList.add('is-invalid');
+
+    } else {
+        var firstNo = numberValue.slice(0, 3),
+            middleNo = numberValue.slice(3, 7),
+            lastNo = numberValue.slice(7);
+
+        const telRegex = /^01(0|1|6|7|8|9)$/;
+
+        if (telRegex.test(firstNo)) {
+
+            this.value = firstNo + '-' + middleNo +'-'+ lastNo;
+            telAlert.style.display = 'none';
+            tel.classList.remove('is-invalid');
+            tel.classList.add('is-valid');
+
+        } else {
+            telAlert.style.display = 'block';
+            telAlert.classList.add('alert-danger');
+            telAlert.textContent = '휴대폰 번호가 정확한지 확인해 주세요.';
+            tel.classList.add('is-invalid');
+        }
+    }
+});
