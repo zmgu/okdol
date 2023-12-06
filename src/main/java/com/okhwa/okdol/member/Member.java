@@ -25,7 +25,7 @@ public class Member {
     @Column(nullable = false)
     private Date birth;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String phone;
 
 }
