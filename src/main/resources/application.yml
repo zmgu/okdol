@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/localokdol?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
-    username: localokdol
+    url: jdbc:mysql://127.0.0.1:3306/okdol?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: okdol
     password: 1234
 
   jpa:
