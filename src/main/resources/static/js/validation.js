@@ -43,7 +43,7 @@ function successTag(tag) {
     elements[0].classList.add('is-valid');
 }
 
-document.getElementById('id').addEventListener('blur', function () {
+document.getElementById('id').addEventListener('input', function () {
 
     if  (!this.value) {
         failTag('id' ,'이메일을 입력해 주세요.');
@@ -54,16 +54,19 @@ document.getElementById('id').addEventListener('blur', function () {
     } else {
 
         $.ajax({
-            url: '/api/members/checkEmail/' + email,
+            url: '/api/members/checkEmail/' + this.value,
             type: 'GET',
             success: function(response) {
-                // 서버로부터의 응답을 처리
-                document.getElementById('emailStatus').innerText = response;
-                successTag('id');
-
+                if (response === 'true') {
+                    failTag('id', '이미 존재하는 이메일입니다.');
+                } else if (response === 'false') {
+                    successTag('id');
+                } else {
+                    console.log('Unexpected response:', response);
+                }
             },
             error: function(error) {
-                console.log(error);
+                console.log('실패');
             }
         });
     }
