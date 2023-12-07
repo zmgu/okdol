@@ -3,7 +3,7 @@ package com.okhwa.okdol.member;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -23,7 +23,7 @@ public class Member {
     private String username;
 
     @Column(nullable = false)
-    private Date birth;
+    private LocalDate birth;
 
     @Column(nullable = false)
     private String phone;
