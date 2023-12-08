@@ -22,48 +22,50 @@
 
     <!-- jquery -->
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/5.3.3/typescript.min.js" integrity="sha512-jBv/kmPnnnxEaX6Cuglz4uauYIcGClgwHmKNP6QRfWbijZ3hWWkh5FKxHsA/Pvs4yeqfDyYu4CEZhoTuVGgdpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Custom styles for this template -->
-  <link href="/css/register.css" rel="stylesheet">
+  <link th:href="@{/css/register.css}" rel="stylesheet">
 
 </head>
 
 <body class="">
   <main class="form-signin w-100 m-auto text-center">
-    <form onsubmit="return validateForm()">
+    <form id="signup" name="signup" th:action="@{/api/members}" method="post">
       <div class="login">
         <h1 class="h3 mb-5 fw-normal">회원가입</h1>
         <div class="form-floating mb-2">
-          <input type="email" class="form-control" id="id" name="id" placeholder="email">
-          <label for="id">아이디 [이메일]</label>
-          <div class="alert alert-danger mt-1" id="idAlert"></div>
+          <input type="text" class="form-control" id="email" name="email" placeholder="email" autocomplete="off">
+          <label for="email">아이디 [이메일]</label>
+          <div class="alert alert-danger mt-1" id="emailAlert"></div>
         </div>
         <div class="form-floating mb-2">
           <input type="password" class="password form-control" style="margin-bottom: -10px;" id="password"
-            name="password" maxlength="16" placeholder="Password">
+            name="password" maxlength="16" placeholder="Password" autocomplete="off">
           <label for="password">비밀번호</label>
           <div class="alert alert-danger mt-3" id="passwordAlert"></div>
         </div>
         <div class="form-floating mb-2">
           <input type="password" class="passwordConfirm form-control" id="passwordConfirm" name="passwordConfirm"
-            maxlength="16" placeholder="Password">
+            maxlength="16" placeholder="Password" autocomplete="off">
           <label for="passwordConfirm">비밀번호 재확인</label>
           <div class="alert alert-danger mt-1" id="passwordConfirmAlert"></div>
         </div>
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="name" name="name" placeholder="이름">
-          <label for="name">이름</label>
-          <div class="alert alert-danger mt-1" id="nameAlert"></div>
+          <input type="text" class="form-control" id="username" name="username" placeholder="이름" autocomplete="off">
+          <label for="username">이름</label>
+          <div class="alert alert-danger mt-1" id="usernameAlert"></div>
         </div>
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일" maxlength="10">
+          <input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일" maxlength="10" autocomplete="off">
           <label for="birth">생년월일 8자리</label>
           <div class="alert alert-danger mt-1" id="birthAlert"></div>
         </div>
         <div class="form-floating mb-4">
-          <input type="text" class="form-control" id="phoneNo" name="phoneNo" maxlength="13" placeholder="연락처">
-          <label for="phoneNo">휴대전화번호 [- 없이 입력]</label>
-          <div class="alert alert-danger mt-1" id="phoneNoAlert"></div>
+          <input type="text" class="form-control" id="phone" name="phone" maxlength="13" placeholder="연락처" autocomplete="off">
+          <label for="phone">휴대전화번호 [- 없이 입력]</label>
+          <div class="alert alert-danger mt-1" id="phoneAlert"></div>
         </div>
       </div>
       <button class="w-100 btn btn-lg mb-4" type="submit" style="background-color: #A9B388;">가입하기</button>

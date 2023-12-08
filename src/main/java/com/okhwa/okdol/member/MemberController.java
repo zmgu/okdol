@@ -26,11 +26,7 @@ class MemberController {
     }
 
     @RequestMapping(value="/members", method=RequestMethod.POST)
-    Member registerMember(Member member) {
-        if (member.getEmail() == null) {
-        // 필수 필드가 비어 있을 경우 예외 처리 또는 기본값 설정
-        throw new IllegalArgumentException("예외처리중");
-    }
+    Member registerMember(@RequestBody Member member) {
         System.out.println("member = " + member);
         return memberService.save(member);
     }

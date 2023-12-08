@@ -1,21 +1,21 @@
 // 패턴
 const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/,
       passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,32}$/,
-      namePattern = /^[a-zA-Z가-힣]*$/,
+      usernamePattern = /^[a-zA-Z가-힣]*$/,
       birthAndTelPattern = /^[0-9-]*$/,
       datePattern = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
 
 // 로딩시 경고 메세지 숨기기
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('idAlert').style.display = 'none';
+    document.getElementById('emailAlert').style.display = 'none';
     document.getElementById('passwordAlert').style.display = 'none';
     document.getElementById('passwordConfirmAlert').style.display = 'none';
-    document.getElementById('nameAlert').style.display = 'none';
+    document.getElementById('usernameAlert').style.display = 'none';
     document.getElementById('birthAlert').style.display = 'none';
-    document.getElementById('phoneNoAlert').style.display = 'none';
+    document.getElementById('phoneAlert').style.display = 'none';
 });
 
-function declaration(tag) {
+function tagSet(tag) {
     let arr = [document.getElementById(tag), document.getElementById(tag + 'Alert')];
 
     return arr;
@@ -24,7 +24,7 @@ function declaration(tag) {
 // 실패 함수
 function failTag(tag, message) {
 
-    let elements = declaration(tag);
+    let elements = tagSet(tag);
 
     elements[1].style.display = 'block';
     elements[1].classList.add('alert-danger');
@@ -36,31 +36,31 @@ function failTag(tag, message) {
 // 성공 함수
 function successTag(tag) {
 
-    let elements = declaration(tag);
+    let elements = tagSet(tag);
     
     elements[1].style.display = 'none';
     elements[0].classList.remove('is-invalid');
     elements[0].classList.add('is-valid');
 }
 
-document.getElementById('id').addEventListener('input', function () {
+document.getElementById('email').addEventListener('input', function () {
 
     if  (!this.value) {
-        failTag('id' ,'이메일을 입력해 주세요.');
+        failTag('email' ,'이메일을 입력해 주세요.');
 
     } else if (!emailPattern.test(this.value)) {
-        failTag('id', '이메일 형식에 맞지 않습니다.');
+        failTag('email', '이메일 형식에 맞지 않습니다.');
 
     } else {
 
         $.ajax({
-            url: '/api/members/checkEmail/' + this.value,
+            url: '/api/members/' + this.value,
             type: 'GET',
             success: function(response) {
                 if (response === 'true') {
-                    failTag('id', '이미 존재하는 이메일입니다.');
+                    failTag('email', '이미 존재하는 이메일입니다.');
                 } else if (response === 'false') {
-                    successTag('id');
+                    successTag('email');
                 } else {
                     console.log('Unexpected response:', response);
                 }
@@ -96,7 +96,7 @@ document.getElementById('passwordConfirm').addEventListener('input', validatePas
 function validatePasswordConfirm() {
 
     let password = document.getElementById('password'),
-        passwordConfirm = declaration('passwordConfirm');
+        passwordConfirm = tagSet('passwordConfirm');
 
     if(password.value == passwordConfirm[0].value && passwordPattern.test(passwordConfirm[0].value)) {
         successTag('passwordConfirm');
@@ -118,16 +118,16 @@ document.getElementById('passwordConfirm').addEventListener('blur', function () 
 });
 
 // 이름
-document.getElementById('name').addEventListener('blur', function () {
+document.getElementById('username').addEventListener('blur', function () {
 
     if  (!this.value) {
-        failTag('name' ,'이름을 입력해 주세요.');
+        failTag('username' ,'이름을 입력해 주세요.');
 
-    } else if (!namePattern.test(this.value)) {
-        failTag('name', '한글, 영문 대/소문자를 사용해 주세요.');
+    } else if (!usernamePattern.test(this.value)) {
+        failTag('username', '한글, 영문 대/소문자를 사용해 주세요.');
 
     } else {
-        successTag('name');
+        successTag('username');
     }
 });
 
@@ -162,82 +162,112 @@ document.getElementById('birth').addEventListener('blur', function () {
 });
 
 // 휴대폰 번호
-document.getElementById('phoneNo').addEventListener('blur', function () {
+document.getElementById('phone').addEventListener('blur', function () {
 
-    let phoneNoValue = this.value;
+    let phoneValue = this.value;
 
-    const numberValue = phoneNoValue.replace(/\D/g, '');
+    const numberValue = phoneValue.replace(/\D/g, '');
 
-    if (!phoneNoValue) {
-        failTag('phoneNo', '휴대전화번호를 입력해 주세요.');
+    if (!phoneValue) {
+        failTag('phone', '휴대전화번호를 입력해 주세요.');
 
-    } else if (!birthAndTelPattern.test(phoneNoValue) || numberValue.length != 11) {
-        failTag('phoneNo', '휴대전화번호 11자리 숫자로 입력해 주세요.');
+    } else if (!birthAndTelPattern.test(phoneValue) || numberValue.length != 11) {
+        failTag('phone', '휴대전화번호 11자리 숫자로 입력해 주세요.');
 
     } else {
         let firstNo = numberValue.slice(0, 3),
             middleNo = numberValue.slice(3, 7),
             lastNo = numberValue.slice(7);
 
-        const phoneNoRegex = /^01(0|1|6|7|8|9)$/;
+        const phoneRegex = /^01(0|1|6|7|8|9)$/;
 
-        if (phoneNoRegex.test(firstNo)) {
+        if (phoneRegex.test(firstNo)) {
 
             this.value = firstNo + '-' + middleNo +'-'+ lastNo;
-            successTag('phoneNo');
+            successTag('phone');
 
         } else {
-            failTag('phoneNo', '휴대전화번호가 정확한지 확인해 주세요.');
+            failTag('phone', '휴대전화번호가 정확한지 확인해 주세요.');
         }
     }
 });
 
-// 버튼
-function validateForm() {
-    let id = declaration('id'),
-        password = declaration('password'),
-        passwordConfirm = declaration('passwordConfirm'),
-        name = declaration('name'),
-        birth = declaration('birth'),
-        phoneNo = declaration('phoneNo');
+function sendDataToServer(data) {
 
-        // 컨트롤러로 보내기
-        if (id[0].classList.contains('is-valid') &&
-            password[0].classList.contains('is-valid') &&
-            passwordConfirm[0].classList.contains('is-valid') &&
-            name[0].classList.contains('is-valid') &&
-            birth[0].classList.contains('is-valid') &&
-            phoneNo[0].classList.contains('is-valid')) {
-
-                alert('성공');
-            return;
-
-        } else {
-            if (!id[0].value) {
-                failTag('id', '이메일을 입력해 주세요.');
-            } else if (id[1].style.display === 'block') {
-                id[0].focus();
-            } else if (!password[0].value) {
-                failTag('password', '비밀번호를 입력해 주세요.');
-            } else if (password[1].style.display === 'block') {
-                password[0].focus();
-            } else if (!passwordConfirm[0].value) {
-                failTag('passwordConfirm', '비밀번호 재확인을 입력해 주세요.');
-            } else if (passwordConfirm[1].style.display === 'block') {
-                passwordConfirm[0].focus();
-            } else if (!name[0].value) {
-                failTag('name', '이름을 입력해 주세요.');
-            } else if (name[1].style.display === 'block') {
-                name[0].focus();
-            } else if (!birth[0].value) {
-                failTag('birth', '생년월일을 입력해 주세요.');
-            } else if (birth[1].style.display === 'block') {
-                birth[0].focus();
-            } else if (!phoneNo[0].value) {
-                failTag('phoneNo', '휴대전화번호를 입력해 주세요.');
-            } else if (phoneNo[1].style.display === 'block') {
-                phoneNo[0].focus();
-            }
-            return false;
+    fetch('/api/members', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        return response.json();
+    })
+    .then(responseData => {
+        // 서버 응답을 이용한 추가적인 로직 수행
+        console.log('회원가입 성공:', responseData);
+        window.location.href = 'login';
+    })
+
 }
+
+ 
+document.querySelector('#signup').addEventListener('submit', (event)=> {
+    event.preventDefault();
+
+    let email = tagSet('email'),
+        password = tagSet('password'),
+        passwordConfirm = tagSet('passwordConfirm'),
+        username = tagSet('username'),
+        birth = tagSet('birth'),
+        phone = tagSet('phone');
+
+    // 컨트롤러로 보내기
+    if (email[0].classList.contains('is-valid') &&
+        password[0].classList.contains('is-valid') &&
+        passwordConfirm[0].classList.contains('is-valid') &&
+        username[0].classList.contains('is-valid') &&
+        birth[0].classList.contains('is-valid') &&
+        phone[0].classList.contains('is-valid')) {
+            
+        sendDataToServer({
+            email: email[0].value,
+            password: password[0].value,
+            username: username[0].value,
+            birth: birth[0].value,
+            phone: phone[0].value
+        });
+        return true;
+    } else {
+        if (!email[0].value) {
+            failTag('id', '이메일을 입력해 주세요.');
+        } else if (email[1].style.display === 'block') {
+            email[0].focus();
+        } else if (!password[0].value) {
+            failTag('password', '비밀번호를 입력해 주세요.');
+        } else if (password[1].style.display === 'block') {
+            password[0].focus();
+        } else if (!passwordConfirm[0].value) {
+            failTag('passwordConfirm', '비밀번호 재확인을 입력해 주세요.');
+        } else if (passwordConfirm[1].style.display === 'block') {
+            passwordConfirm[0].focus();
+        } else if (!username[0].value) {
+            failTag('name', '이름을 입력해 주세요.');
+        } else if (username[1].style.display === 'block') {
+            username[0].focus();
+        } else if (!birth[0].value) {
+            failTag('birth', '생년월일을 입력해 주세요.');
+        } else if (birth[1].style.display === 'block') {
+            birth[0].focus();
+        } else if (!phone[0].value) {
+            failTag('phone', '휴대전화번호를 입력해 주세요.');
+        } else if (phone[1].style.display === 'block') {
+            phone[0].focus();
+        }
+        return false;
+    }
+});
