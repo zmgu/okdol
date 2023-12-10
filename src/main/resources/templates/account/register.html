@@ -26,11 +26,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/5.3.3/typescript.min.js" integrity="sha512-jBv/kmPnnnxEaX6Cuglz4uauYIcGClgwHmKNP6QRfWbijZ3hWWkh5FKxHsA/Pvs4yeqfDyYu4CEZhoTuVGgdpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Custom styles for this template -->
-  <link th:href="@{/css/register.css}" rel="stylesheet">
+  <link href="/css/register.css" rel="stylesheet">
+  <link href="/css/header.css" rel="stylesheet" />
 
 </head>
 
 <body class="">
+  <div class="container mt-5" th:replace="~{fragments/header :: header}"></div>
+  <hr>
   <main class="form-signin w-100 m-auto text-center">
     <form id="signup" name="signup" th:action="@{/api/members}" method="post">
       <div class="login">
