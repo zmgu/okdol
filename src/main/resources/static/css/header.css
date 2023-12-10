@@ -1,0 +1,18 @@
+.vr {
+    display: inline-block;
+    border-right: 1px solid;
+    line-height: 20px !important;
+    height: 20px;
+    vertical-align: middle !important;
+    margin-top: 10px;
+}
+
+/* google font */
+* {
+    font-family: 'Jua', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+nav {
+    background-color: ghostwhite;  
+}
