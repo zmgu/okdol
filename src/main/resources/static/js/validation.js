@@ -207,19 +207,21 @@ function sendDataToServer(data) {
         }
         return response.json();
     })
-    .then(responseData => {
-        // 서버 응답을 이용한 추가적인 로직 수행
+    .then(() => {
         Swal.fire({
             position: "center",
             icon: "success",
             title: "회원가입에 성공하셨습니다. \n 로그인 후 이용해 주세요.",
             showConfirmButton: false,
             timer: 2500
-          }).then(function() {
-            window.location.href = 'login'
+          })
+          .then(function() {
+            window.location.href = '/login'
           })
     })
-
+    .catch(error => {
+        console.log('Fetch error:', error);
+    })
 }
 
  
