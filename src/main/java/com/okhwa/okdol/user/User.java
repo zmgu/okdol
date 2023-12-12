@@ -7,25 +7,22 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "member")
+@Table(name = "user")
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
     private String username;
-
-    @Column(nullable = false)
     private LocalDate birth;
-
-    @Column(nullable = false)
     private String phone;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    private Boolean enabled;
 }
