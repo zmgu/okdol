@@ -27,7 +27,7 @@
     <div class="container mt-5" th:replace="~{fragments/header :: header}"></div>
     <hr>
     <main class="form-signin w-100 m-auto">
-        <form>
+        <form th:action="@{/account/login}" method="post">
           <div class="login">
             <img src="/images/icon/okhwa-logo.png" class="mb-3">
           <h1 class="h3 mb-5 fw-normal">로그인</h1>
