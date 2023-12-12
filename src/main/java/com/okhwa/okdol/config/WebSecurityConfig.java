@@ -30,6 +30,7 @@ public class WebSecurityConfig {
                         .loginPage("/account/login")
                         .permitAll()
                 )
+                .logout(LogoutConfigurer::permitAll)
                 .csrf(AbstractHttpConfigurer::disable)
         ;
 
