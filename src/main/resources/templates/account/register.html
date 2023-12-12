@@ -35,7 +35,7 @@
   <div class="container mt-5" th:replace="~{fragments/header :: header}"></div>
   <hr>
   <main class="form-signin w-100 m-auto text-center">
-    <form id="signup" name="signup" th:action="@{/api/members}" method="post">
+    <form id="signup" name="signup" th:action="@{/api/v1/users}" method="post">
       <div class="login">
         <h1 class="h3 mb-5 fw-normal">회원가입</h1>
         <div class="form-floating mb-2">

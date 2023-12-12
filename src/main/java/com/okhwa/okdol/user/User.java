@@ -1,4 +1,4 @@
-package com.okhwa.okdol.member;
+package com.okhwa.okdol.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "member")
-public class Member {
+public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -54,7 +54,7 @@ document.getElementById('email').addEventListener('input', function () {
     } else {
 
         $.ajax({
-            url: '/api/members/' + this.value,
+            url: '/api/v1/users/' + this.value,
             type: 'GET',
             success: function(response) {
                 if (response === 'true') {
@@ -194,7 +194,7 @@ document.getElementById('phone').addEventListener('blur', function () {
 
 function sendDataToServer(data) {
 
-    fetch('/api/members', {
+    fetch('/api/v1/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
