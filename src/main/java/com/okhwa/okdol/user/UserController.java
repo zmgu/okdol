@@ -22,9 +22,8 @@ class UserController {
         }
     }
 
-    @RequestMapping(value="/users", method=RequestMethod.POST)
-    User registerMember(@RequestBody User user) {
-        System.out.println("user = " + user);
+    @RequestMapping(value="/users")
+    User registerUser(@RequestBody User user) {
         return userService.save(user);
     }
 
