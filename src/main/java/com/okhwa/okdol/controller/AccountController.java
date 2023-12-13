@@ -13,6 +13,9 @@ public class AccountController {
         return "account/login";
     }
 
+    @GetMapping("/success")
+    public String loginSuccess() { return "redirect:/"; }
+
     @GetMapping("/register")
     public String register() {
         return "account/register";
