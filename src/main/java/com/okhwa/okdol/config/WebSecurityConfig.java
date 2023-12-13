@@ -29,6 +29,7 @@ public class WebSecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/account/login")
                         .permitAll()
+                        .defaultSuccessUrl("/account/success", true)
                 )
                 .logout(LogoutConfigurer::permitAll)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -38,7 +39,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -55,8 +56,7 @@ public class WebSecurityConfig {
                         + "where email = ?")
                 .authoritiesByUsernameQuery("select email, role "
                         + "from user "
-                        + "where email = ?");
+                        + "where email = ?")
+                .passwordEncoder(passwordEncoder());
     }
-
-
 }
